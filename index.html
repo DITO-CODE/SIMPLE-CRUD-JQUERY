@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CRUD JQUERY DITOCODE</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+	<script src="./imports/funciones.js"></script>
+	<script>
+		$(document).ready(function(){
+			//todo este codigo puede ser ejecutado cuando la pagina este cargada
+			//Selector $("#idComponente") o $(.classComponente)
+
+			usuarios = getUsuarios();
+
+			$("#formulario").on("submit",function(event){
+				event.preventDefault();
+				//Creamos el objeto json para agregar a un usuarios
+				var usuario ={};
+
+				usuario.nombre=$("#nombre").val();
+				usuario.apellidos=$("#apellidos").val();
+				usuario.edad=$("#edad").val();
+				usuario.id=generaId();
+
+				//Reinicia los valores del formulario
+				$(this)[0].reset();
+
+				agregarUsuario(usuario);
+			});
+		
+		});
+	</script>
+
+	<h4>CRUD CON JQUERY <a href="https://diezoscartorres.wixsite.com/ditocode">DITO-CODE</a> </h4>
+	<hr/>
+	<div>
+	<label>Agregar Usuario</label>
+		<form id="formulario">
+			<label for="nombre">Nombre:</label>
+			<input type="text" id="nombre" required></input>
+			<br/>
+			<label for="apellidos">Apellidos</label>
+			<input type="text" id="apellidos" required></input>
+			<br>
+			<label for="edad">Edad</label>
+			<input type="number" id="edad" required></input>
+			<br>
+			<input type="submit" value="Agregar" id="btnForm"></input>
+		</form>
+	</div>
+	<hr>
+	<h4>Usuarios<h4>
+	<div>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellidos</th>
+					<th>Edad</th>
+					<th>Eliminar</th>
+					<th>Editar</th>
+				</tr>
+			</thead>
+			<tbody id="bodyTable"> 
+
+			</tbody>
+		</table>
+	</div>
+	
+</body>
+
+	
+</html>
